@@ -3,14 +3,53 @@
 
   <head>
     <meta charset="utf-8">
-    <title>計算用2</title>
-
+    <title>mousedon イベントによるテスト</title>
+    <div id="koko">ここをクリックしたらfocusイベント発動にしてみる</div>
+    <div>ダミー</div>
+        <div>ダミー</div>
+            <div>ダミー</div>
+                <div>ダミー</div>
+    <div id="mouse"><input type="text" placeholder="ここに入力してください"width="100px"></div>
+    <div>ダミー</div>
+        <div>ダミー</div>
+            <div>ダミー</div>
+                <div>ダミー</div>    <div>ダミー</div>
+                        <div>ダミー</div>
+                            <div>ダミー</div>
+    <div id="momo"><input type="text" placeholder="はーい" id="momo2"></div>
+    <div id="nana">ななななんと</div>
   </head>
   <body>
     <h1>mouse イベントによる計算処理</h1>
+    <div><input type= "button" value="ボタンです" id="btnA"></div>
     <a href="gatyaCount.html">ガチャの確率を計算するテスト</a>
+     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
-      console.log("hello");
+    var count = 0;
+    $("#mouse").mouseup(function(e){
+      console.log("挙動的にはmouseupのようなきがするなあ");
+      if(count === 0){
+        console.log("これはまだ０回目");
+        count++;
+      }else{
+        count++;
+        console.log("１回目以上になりましたよ");
+      }
+});
+
+    $("#koko").mouseup(function(e){
+      $("#momo2").focus();
+      console.log("focusされました");
+    });
+
+    $("#btnA").click(function(e){
+        if(count === 0){
+          console.log("まだだめだ");
+        }else{
+          console.log("login    OK!!!!!!!!!!!!");
+        }
+    });
+
     </script>
   </body>
 </html>
