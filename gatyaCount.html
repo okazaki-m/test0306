@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+  <html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <title>計算用</title>
+
+  </head>
+  <body>
+    <h1>計算するためのページ</h1>
+    <script>
+        console.log("hello world!");
+        var hitRate = 0.01;
+        var unhitRate = 1 - hitRate;
+        var hundretunhitRate = 1;
+        console.log(unhitRate);
+
+        for(var i=0;i<100;i++){
+          // console.log(i);
+          hundretunhitRate  = hundretunhitRate * unhitRate;
+        }
+        var onehitRate = 1 - hundretunhitRate;
+        console.log(onehitRate);
+    </script>
+  </body>
+</html>
