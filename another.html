@@ -3,19 +3,21 @@
 
   <head>
     <meta charset="utf-8">
-    <title>mousedon イベントによるテスト</title>
-    <div id="koko">ここをクリックしたらfocusイベント発動にしてみる</div>
+    <title>mousedon イベントによる</title>
+    <div id="koko">kokoここをクリックしたらfocusイベント発動にしてみる(momo2へ)</div>
     <div>ダミー</div>
         <div>ダミー</div>
+    <div id="koko2">koko2ここをクリックしたらfocusイベント発動にしてみる(mouseへ)</div>
+        <div ><input type="text" placeholder="ここに入力してください"width="100px" id="wowow"></div>
             <div>ダミー</div>
-                <div>ダミー</div>
-    <div id="mouse"><input type="text" placeholder="ここに入力してください"width="100px"></div>
+                <div>ここがid mouse</div>
+    <div ><input type="text" placeholder="ここに入力してください"width="100px" id="mouse"></div>
     <div>ダミー</div>
         <div>ダミー</div>
             <div>ダミー</div>
                 <div>ダミー</div>    <div>ダミー</div>
                         <div>ダミー</div>
-                            <div>ダミー</div>
+                            <div>ここがmomo2</div>
     <div id="momo"><input type="text" placeholder="はーい" id="momo2"></div>
     <div id="nana">ななななんと</div>
   </head>
@@ -40,6 +42,12 @@
     $("#koko").mouseup(function(e){
       $("#momo2").focus();
       console.log("focusされました");
+    });
+
+    $("#koko2").mouseup(function(e){
+      // $("#mouse").focus();
+      jQuery("#mouse").trigger("click");
+      console.log("mouseがfocusされました");
     });
 
     $("#btnA").click(function(e){
