@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+  <html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <title>表に同一titleがあったらcountを＋して統合するロジック</title>
+    <style>
+      body{
+        background: #f6bfbc;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1>同タイトルのものを一つのレコードに全て加算するPG</h1>
+
+    <script>
+
+    //テスト用データ
+    var hi2 = [];
+    hi2[0] = {title:"a",count:455};
+    hi2[1] = {title:"b",count:32};
+    hi2[2] = {title:"c",count:4};
+    hi2[3] = {title:"a",count:3};
+    hi2[4] = {title:"e",count:788};
+    hi2[5] = {title:"b",count:32};
+    hi2[6] = {title:"a",count:1234};
+    hi2[7] = {title:"f",count:99};
+//    console.dir(hi2);
+
+
+
+// ・ロジックの方針
+// 「指定されたセル」のタイトルのデータとそれ以降のデータを順次比較
+// 同じであれば「指定されたセル」に足してそれ以降のデータの方を０へ
+
+
+    for(var i = 0;i< hi2.length;i++){
+
+       if(i !== hi2.length){
+        for( var m  = i +1;m < hi2.length; m++){
+            //console.log("mの値は" + m);
+            if(hi2[i].title === hi2[m].title){
+              //一致した場合
+              hi2[i].count = hi2[i].count + hi2[m].count;
+              hi2[m].count = 0;
+            }
+        }
+       }
+    }
+    //計算後の配列の値を表示
+    console.dir(hi2);
+
+    </script>
+  </body>
+</html>
