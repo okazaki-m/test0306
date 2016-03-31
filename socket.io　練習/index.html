@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+    <form id="myForm2">
+        <input type="text" id="msg"> <input type="submit" value="Send!">
+    </form>
+
+    <form id="myForm">
+        <select id="rooms">
+            <option value="room1">Room 1</option>
+            <option value="room2">Room 2</option>
+        </select>
+        <input type="text" id="msg"> <input type="submit" value="Send!">
+    </form>
+    <ul id="logs"></ul>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+
+    var socket = io.connect('http://192.168.33.72:3000');
+
+
+    socket.on('news', function (data) {
+      console.log(data.hello);
+      socket.emit('my other event', { my: 'data' });
+    });
+    socket.on('aiu',function(data){
+      console.log(data.helloo + data.sid);
+    });
+
+  socket.emit('haihai', "文字列でも");
+
+  // socket.json.emit('eee',{ room:"room1"});
+  // socket.on("yourroom",function(data){
+  //     console.log(data);
+  // });
+
+  $('#myForm').submit(function(e) {
+     e.preventDefault();
+     socket.emit('eee', {room: $('#rooms').val()});
+     socket.on("yourroom",function(data){
+          console.log(data);
+          });
+    });
+
+    socket.on('emit_from_server', function(data) {
+        console.log(data);
+        // $('#logs').append($('<li>').text(data));
+    });
+
+  </script>
+</body>
+</html>
