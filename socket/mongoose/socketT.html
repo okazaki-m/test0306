@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+  <html lang="ja">
+  <head>
+  </head>
+  <body>
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://192.168.33.72:3000');
+  socket.on('news', function (data) {
+    console.log(data);
+    console.log(data.hello.comment);
+    socket.emit('my other event', { my: 'data' });
+  });
+</script>
+  </body>
+</html>
