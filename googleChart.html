@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Google Chart Tools</title>
+<script src="https://www.google.com/jsapi"></script>
+<script>
+    google.load('visualization', '1.0', {'packages':['corechart']});
+    google.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        // 折れ線グラフ
+        // データを用意する
+        // 列    列  列
+        // label n   n
+        // label n   n
+        // label n   n
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '年');
+        var hidari = "飼うなら猫だ派";
+        data.addColumn('number', hidari);
+        data.addColumn('number', '飼うなら犬だ派');
+        data.addRows([
+            ['0分', 48, 52],
+            ['2分', 35, 65],
+            ['4分', 20, 80],
+            ['6分', 71, 29],
+            ['8分', 77, 23],
+            ['10分', 74, 26]
+        ]);
+
+        // グラフのオプションを指定する
+        var options = {
+            title: '飼うべきペットは何か　比率の推移',
+            width: 800,
+            height: 500
+        }
+
+        // 描画する
+        var chart = new google.visualization.LineChart(document.getElementById('chart'));
+        chart.draw(data, options);
+    }
+
+</script>
+</head>
+<body>
+    <div id="chart"></div>
+    <div id="chart2"></div>
+</body>
+</html>
