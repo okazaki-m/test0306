@@ -21,8 +21,12 @@ var Schema   = mongoose.Schema;
 //スキーマはこのような型でいきますよ宣言
 var UserSchema = new Schema({
   name:  String,
-  point: Number
+  point: Number,
+  socketID:String,
+  view:Number,
+  date: { type: Date, default: Date.now }
 });
+
 
 
 //mongodbはこれでつなぎますよ宣言　DBまで指定（例：test)
@@ -32,18 +36,21 @@ mongoose.connect('mongodb://192.168.33.72/test');
 mongoose.model('User333', UserSchema);
 
 //
-var User = mongoose.model('User333');
-var user = new User();
+
+
 //userオブジェクトのプロパティにどんどん値を！
-user.name  = 'KrdLab';  //例①　　ちなみに上で型宣言しましたね！もし型にない値を入れようとすると弾くよ
-user.point = 777; //例②
+
+
+
+
+
 
 //オブジェクトにsave（おそらく既定のメソッド）で mongo に insertを実行
 //user オブジェクトのプロパティに入れていたものをどんどんDBに入れていく
-user.save(function(err) {
-  if (err) { console.log(err); } else{console.log("成功？");};
-
-});
+// user.save(function(err) {
+//   if (err) { console.log(err); } else{console.log("successful!!!!!!!!!!!");};
+//
+// });
 //でこんな感じになってる　↓
 //   > db.user333.find();
 //    { "_id" : ObjectId("570e43c6fd1bb7d9704c8724"), "point" : 777, "name" : "KrdLab", "__v" : 0 }
@@ -83,6 +90,18 @@ app.get('/', function (req, res) {
   }
   console.log( "中身は" + req.session.view);
   console.log("リファレンスみたらsessionIDなる⇨" + req.sessionID);
+
+  var User = mongoose.model('User333');
+  var user = new User();
+    user.socketID = req.sessionID;
+    user.view = req.session.view;
+    user.date = new Date;
+    user.point = 3456;
+
+  user.save(function(err) {
+    if (err) { console.log(err); } else{console.log("socketIDが入っているはず");};
+  });
+
   //cookieの入れ方はこう
  res.cookie("test","testtest",{signed:true});
 });
