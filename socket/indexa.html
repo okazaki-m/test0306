@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+  <html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>自由に書きたいです</title>
+  </head>
+  <body>
+    <h1>今年は２０１６年だよー</h1>
+    <a href="/memo" id="aa">ああ
+        <div href="memo" id="ii">いい
+          <div id="uu">うう</div>
+        </div>
+    </a>
+
+        <ul id="logs">はじめはこれ</ul>
+    <p id="aiueo">aiueo</p>
+    <p id="kakiku">ここをサンプル</p>
+        <ul id="logs"></ul>
+    <form id="myForm">
+      <input type ="text" method="post" id="textA">
+      <input type="submit" value="emit">
+    </form>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://192.168.33.72:3000');
+  //    socket.emit('myRoom',"roomA");
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'by indexa.html socket' });
+  });
+  socket.on("roomtest",function(data){
+    console.log(data);
+  });
+
+
+  document.getElementById("aa").addEventListener("click",clickHandler,false);
+    document.getElementById("ii").addEventListener("click",clickHandler2,false);
+      document.getElementById("uu").addEventListener("click",function(e){
+        alert("uuuuuuuuuu");
+        console.log("はじめのこの処理は行われる？");
+      //  e.preventDefault();
+        console.log("ここに記載の処理はするんです。しないのはこの後のタグ処理（例;aタグ、ページ遷移タグ？");
+      });
+
+  function clickHandler(e){
+    alert("aa");
+  }
+  function clickHandler2(e){
+    alert("ii");
+  }
+  function clickHandler3(e){
+    alert("uu");
+  }
+
+  $("#myForm").submit(function(e){
+    e.preventDefault();
+    var rei = document.getElementById("textA").value;
+    //console.dir(rei);
+    $("#aiueo").text(rei);
+    console.log(rei);
+    $('#logs').append($('<li>').text(rei));
+
+    socket.emit('myRoom',rei);
+
+  });
+
+</script>
+  </body>
+</html>
