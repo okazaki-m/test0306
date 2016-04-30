@@ -21,7 +21,7 @@
         data.addColumn('number', hidari);
         data.addColumn('number', '飼うなら犬だ派');
         data.addRows([
-            ['0分', 48, 52],
+            ["0分", 48, 52],
             ['2分', 35, 65],
             ['4分', 20, 80],
             ['6分', 71, 29],
@@ -33,7 +33,13 @@
         var options = {
             title: '飼うべきペットは何か　比率の推移',
             width: 800,
-            height: 500
+            height: 500,
+            hAxis: {
+              title: "横軸のタイトル"
+            },
+            vAxis:{
+              title:"縦軸のタイトル"
+            }
         }
 
         // 描画する
