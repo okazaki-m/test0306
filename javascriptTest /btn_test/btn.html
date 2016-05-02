@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title> ボタンによる切り替えテスト</title>
+  <style>
+    body {
+        background: #e0e0e0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    #timerText {
+        color: #00aaff;
+        font-size: 128px;
+        margin: 40px auto;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+    .btn{
+      background:#6cc644;
+      width: 250px;
+      height: 20px;
+      line-height: 20px;
+      padding:17px;
+      border-radius:5px;
+      color:white;
+      font-size:3px;
+      cursor: pointer;
+      margin:2px auto;
+      display:inline-block;
+      box-shadow:0 4px 0 green;
+
+    }
+    .btn:hover{
+      opacity: 0.8;
+    }
+    .btn.pushed{
+      box-shadow:0 4px 0 green;
+      /*opacity:0.5;*/
+      background: #55a532;
+    }
+    .btn + .btn{
+      margin-left: 20px;
+    }
+    #kiri{
+      margin: 50px auto 50px;
+      color:white;
+      font-size: 30px;
+      font-family: Arial, sans-serif;
+    }
+    body{
+      background-image: url("images/shiro2.jpeg");
+      background-repeat: no-repeat;
+      background-size: 100% 500px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="kiri">How people build disscassion</div>
+<div class="btn" id="b">ペンギン党</div>
+<div class="btn" id="c">シマウマ党</div>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script>
+
+
+
+(function(){
+  var bbb = document.getElementById("b");
+  bbb.addEventListener("click",function(){
+
+    if($("#c").hasClass("pushed")){
+      $("#c").removeClass("pushed");
+      $("#b").addClass("pushed");
+    }
+    $(this).addClass("pushed");
+  });
+
+  var ccc = document.getElementById("c");
+  ccc.addEventListener("click",function(){
+    if($("#b").hasClass("pushed")){
+      $("#b").removeClass("pushed");
+      $("#c").hasClass("pushed");
+    }
+    $(this).addClass("pushed");
+
+  });
+})();
+  </script>
+</body>
+</html>
