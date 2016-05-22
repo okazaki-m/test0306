@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+ <html lang="ja">
+ <head>
+   <meta charset="utf-8">
+   <title>タイトル</title>
+</head>
+    <body>
+        <h1 id="h1">h1をとりあえず</h1>
+        <div id="aa">divだよー</div>
+        <form method="post" action="/" id="myform">
+            <input type="text" id="msg" name="memo">
+            <input type="submit" value="submit">
+        </form>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script>
+
+        $(function(){
+
+
+
+        var socket = io.connect('http://192.168.33.72:3000');
+          socket.on('news', function (data) {
+          console.log(data);
+          socket.emit('my other event', { my: 'ejsファイルからのデータを送ります' });
+        });
+
+
+        var cnt = 0;
+
+        $("#myform").submit(function(e){
+          e.preventDefault();
+          $("#aa").append($("<p>").text($("#msg").val()).attr("id","no" + cnt));
+          cnt++;
+        });
+
+        $("body").on("click","p",function(e){
+          console.log(this.id);
+        });
+
+      });
+        </script>
+    </body>
+</html>
