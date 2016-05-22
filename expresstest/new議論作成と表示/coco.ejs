@@ -1,0 +1,24 @@
+<html>
+
+  <h1>aaaa</h1>
+  <h2>bb</h2>
+  <h3><% docs.length %>はああああ</h3>
+
+
+  <div>aa</div>
+ <ol><%  for(var i=0;i< docs.length;i++){ %>
+   <li><%= docs[i].title %> + <%= docs[i].memo%> + <%= docs[i]._id %></li>
+   <a href="/para/<%=docs[i]._id%>"><%= docs[i]._id%></a>
+   <% } %>
+ </ol>
+
+
+  <script>
+
+  // for(var i =0;i <  docs.length ;i++){
+  //   console.log(  docs[i].title );
+  // };
+
+  </script>
+
+</html>
