@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+  <html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <title>複数の要素があるときの要素の追加の仕方</title>
+    <style>
+      .in{
+        background-color: red;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div>入れ子で要素をいれる場合についての覚書</div>
+  <div>TIME</div>
+  <form id="myform" method="post" action="">
+    <input type ="text" id="memo">
+    <input type ="submit" value="submit">
+  </form>
+  <div id="abc">test</div>
+
+
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script>
+  $(function(){
+
+    $("#myform").submit(function(e){
+      e.preventDefault();
+      var p = $("<div>").text($("#memo").val());
+      var p2 = $("<div>").text("aaa").attr("class","in");
+      var pp = $("<div>").append(p).append(p2).attr("class","new");
+      $("#abc").before(pp);
+
+    });
+
+    });
+
+  </script>
+  </body>
+</html>
