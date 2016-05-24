@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+  <html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <title>チャットの各コメントの番号をどうやって取得させるか</title>
+    <style>
+      .in{
+        background-color: red;
+      }
+    </style>
+
+  </head>
+  <body>
+ <h1>チャットでコメントのIDを、クリックしたときなどに取得させたい。どうすれば？</h1>
+ <h2>ポイント１　親要素は一つになるように入れ子構造にすること</h2>
+ <h3>ポイント２　idに数字オンリーが許されるという奇跡</h3>
+    <div id="1211">
+        親要素だよー
+        <div id="bb">兄要素だよー（クリックすると親要素のid="1211"が）</div>
+        <div id="cc">弟要素だよー</div>
+    </div>
+
+
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script>
+  $(function(){
+          var cnt = 0;
+
+    $("body").on("click",'#bb',function(){
+        //alert("ararararra");
+        console.log(cnt);
+        cnt++;
+        console.log($(this).parent().attr("id"));
+    });
+    $("body").on("click",'#cc',function(){
+        //alert("ararararra");
+        console.log(cnt);
+        cnt++;
+        console.log($(this).parent().attr("id"));
+    });
+
+
+    });
+
+  </script>
+  </body>
+</html>
