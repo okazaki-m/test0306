@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+  <html lang="ja">
+  <head>
+    <title>時間に応じて帰る　その日か、それとも翌日か</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+      <h1>時間を調べる関数</h1>
+
+      <form action="" id="ho">
+        <input type="text" id="hoge" name="hogege">
+        <input type ="submit" value="emit">
+      </form>
+      <script>
+
+
+
+
+      var good = (function(){
+          var test = "21:16";
+
+          var ct = changeTime(test);
+          console.log(ct);
+
+
+          //関数
+          function changeTime(test){
+              var now = new Date();
+              var nowday = now.getFullYear() + "/" + (now.getMonth() + 1) + "/" + now.getDate() + " ";
+              //2016/6/13 21:41
+              var dd = nowday + test;
+              //指定日にした
+              var sample = new Date(dd);
+              //差
+              var result = sample - now;
+
+              if(result > 0){
+                //＋　であればその日だ
+                var kore = sample;
+                //console.log(kore);
+                return kore;
+              }else{
+                //ー　であれば次の日だ
+              //  ミリ秒からdate を作成する
+                var tommorow = new Date(now.setDate(now.getDate() + 1));
+                var ta = tommorow.getFullYear() + "/" + (tommorow.getMonth() + 1) + "/" + tommorow.getDate() + " " + test;
+                var kore = new Date(ta);
+                  //console.log(kore);
+                return kore;
+              }
+          }
+      })();
+
+
+
+
+      </script>
+  </body>
+</html>
