@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+  <html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <title>setTimeOUT</title>
+    <style>
+    </style>
+
+  </head>
+  <body>
+
+  <div>TIME</div>
+
+    <script>
+            var i = 0;
+            function show() {
+                console.log(i++);
+                //setTimeout  のをtidに入れてfuncitonの実行にもなる
+                var tid = setTimeout(function() {
+                    show();
+                }, 1000);
+
+                //クリアする条件
+                if (i > 3) {
+                  //のちにtid としてclearTimeoutでクリアする
+                    clearTimeout(tid);
+                }
+            }
+            show();
+    </script>
+  </body>
+</html>

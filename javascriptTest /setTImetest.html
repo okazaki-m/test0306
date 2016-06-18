@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+  <html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <title>setTimeOUT</title>
+    <style>
+    </style>
+
+  </head>
+  <body>
+
+  <div>TIME</div>
+
+    <script>
+      // var a = new Date();
+      // setTimeout(console.log("aaa"),3000);
+      // var b = new Date();
+      // setTimeout(console.log("bbb"),6000);
+      // var c = new Date();
+      // setTimeout(console.log("ccc"),3000);
+      var cnt = 0;
+      function abc(){
+        var aa = setTimeout(function(){
+          cnt++;
+          console.log("bbb" + cnt);
+          abc();
+        },500);
+      }
+
+
+      abc();
+
+    </script>
+  </body>
+</html>
