@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title> ボタンを押すとカウントダウンさせたい</title>
+  <style>
+    body {
+        background: #e0e0e0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>みだし</h1>
+  <div><span id="aa">10:00</span></div>
+
+  <script>
+  (function(){
+    var i = 0;
+    var tt = 60;
+    var alarm  = 0;
+    var min = 0;
+    var sec = 0;
+
+    function test(){
+      var aa = setTimeout(function(){
+        console.log(i);
+        i++;
+        var time = document.getElementById("aa");
+        alarm = 560 - i;
+        test();
+        min = Math.floor(alarm / 60);
+        sec = alarm % 60;
+        if(sec < 10){
+          sec = "0" + sec;
+        }
+        time.innerText = min + ":" + sec;
+      },1000);
+        if(alarm < 0){
+          clearTimeout(aa);
+                }
+        }
+    test();
+  })();
+  </script>
+</body>
+</html>

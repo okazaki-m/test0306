@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title> ボタンを押すとカウントダウンさせたい</title>
+  <style>
+    body {
+        background: #e0e0e0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>みだし</h1>
+<div>aaa</div>
+<div id="time">0000</div>
+
+  途中からアクセスしてきた人のためにも、渡すこと
+  終了時刻は {:}で渡すこと
+  あとアクセスしたときの時刻をサーバで調べる　⇨mongo には保存しないが、すぐに渡す
+  でそれを元に残り時間を生成
+
+  もし、さいよみこみをしたら？
+    それは再アクセスとおなじ
+
+    もしはじめからいたら？
+    残りが６００（１０分）になったら表示にしておけばいい
+
+
+    で、ユーザーのjavascript側にリダイレクト処理を持たせると、、、
+      で、そのリダイレクトは、その先をどこにするかはurlの　paramで指定することで
+      求めるところに飛ばしたい
+
+
+  <script>
+  (function(){
+      //ここで重要なのは名前空間を使いたいってだけ
+
+      //今の時刻
+      var timea = new Date();
+      timea = Date.parse(timea);
+      console.log(timea);
+
+      //終了時刻　10分後
+      timeb = timea + 10 * 60 * 1000 ;
+      var i = 0;
+      var time_ato = ((timeb - timea - i * 1000) / 1000);
+      console.log("ここは一回" + time_ato);
+
+      function show(){
+                  i++;
+        var sss = setTimeout(function(){
+          time_ato = time_ato - 1;
+          console.log(time_ato);
+          if(time_ato < 598){
+            console.log("処理");
+            location.href="http://google.com";
+          }
+          show();
+        },1000);
+      }
+      show();
+
+c
+
+
+  })();
+  </script>
+</body>
+</html>
